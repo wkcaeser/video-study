@@ -1,0 +1,96 @@
+group 'com.wk'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+configurations {
+    mybatisGenerator
+}
+
+def getDatabaseProperties = {
+    def properties = new Properties()
+    file("src/main/resources/config/mybatis/jdbc.properties").withInputStream { inputStream ->
+        properties.load(inputStream)
+    }
+    properties
+}
+
+task mybatisGenerate << {
+    def properties = getDatabaseProperties()
+    ant.properties['targetProject'] = projectDir.path
+    ant.properties['driverClass'] = properties.getProperty("jdbc.driver")
+    ant.properties['connectionURL'] = properties.getProperty("jdbc.url")
+    ant.properties['userId'] = properties.getProperty("jdbc.username")
+    ant.properties['password'] = properties.getProperty("jdbc.password")
+    ant.properties['src_main_java'] = sourceSets.main.java.srcDirs[0].path
+    ant.properties['src_main_resources'] = sourceSets.main.resources.srcDirs[0].path
+    ant.properties['modelPackage'] = properties.getProperty("model")
+    ant.properties['mapperPackage'] = properties.getProperty("mapper")
+    ant.properties['sqlMapperPackage'] = properties.getProperty("sqlMapper")
+    ant.taskdef(
+            name: 'mbgenerator',
+            classname: 'org.mybatis.generator.ant.GeneratorAntTask',
+            classpath: configurations.mybatisGenerator.asPath
+    )
+    ant.mbgenerator(overwrite: true,
+            configfile: 'src/main/resources/config/mybatis/generatorConfig.xml', verbose: true) {
+        propertyset {
+            propertyref(name: 'targetProject')
+            propertyref(name: 'userId')
+            propertyref(name: 'driverClass')
+            propertyref(name: 'connectionURL')
+            propertyref(name: 'password')
+            propertyref(name: 'src_main_java')
+            propertyref(name: 'src_main_resources')
+            propertyref(name: 'modelPackage')
+            propertyref(name: 'mapperPackage')
+            propertyref(name: 'sqlMapperPackage')
+        }
+    }
+}
+
+def tomcatVersion = "9.0.0.M21"
+def jstlVersion = "1.2"
+def springVersion = "4.3.8.RELEASE"
+def mybatisVersion = "3.4.4"
+def mybatisSpringVersion = "1.3.1"
+def mysqlConnectorVersion = "6.0.6"
+def dbcpVersion = "2.1.1"
+def log4jVersion = "2.8.2"
+def gsonVersion = "2.8.1"
+def jjwtVersion = "0.7.0"
+def fileupload = "1.3.3"
+def commonsIo = "2.5"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile fileTree(dir: 'src/main/libs', includes: ['*.jar'])
+
+    mybatisGenerator 'org.mybatis.generator:mybatis-generator-core:1.3.5'
+    mybatisGenerator 'mysql:mysql-connector-java:6.0.6'
+    mybatisGenerator 'tk.mybatis:mapper:3.4.0'
+
+    compile "org.apache.tomcat:tomcat-servlet-api:$tomcatVersion"
+    compile "org.apache.tomcat:tomcat-jsp-api:$tomcatVersion"
+    compile "javax.servlet:jstl:$jstlVersion"
+    compile "org.springframework:spring-webmvc:$springVersion"
+    compile "org.springframework:spring-jdbc:$springVersion"
+    compile "org.mybatis:mybatis:$mybatisVersion"
+    compile "org.mybatis:mybatis-spring:$mybatisSpringVersion"
+    compile "mysql:mysql-connector-java:$mysqlConnectorVersion"
+    compile "org.apache.commons:commons-dbcp2:$dbcpVersion"
+    compile "org.apache.logging.log4j:log4j-core:$log4jVersion"
+    compile "com.google.code.gson:gson:$gsonVersion"
+    compile "io.jsonwebtoken:jjwt:$jjwtVersion"
+    compile "commons-io:commons-io:$commonsIo"
+    compile "commons-fileupload:commons-fileupload:$fileupload"
+}
