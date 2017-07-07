@@ -38,6 +38,7 @@
         </javaClientGenerator>
 
         <!-- !!!! Table Configurations !!!! -->
-        <table tableName="test"/>
+        <table tableName="Test"/>
+        <table tableName="Users"/>
     </context>
 </generatorConfiguration>

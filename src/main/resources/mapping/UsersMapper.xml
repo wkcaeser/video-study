@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.videoStudy.data.dao.UsersMapper">
+  <resultMap id="BaseResultMap" type="com.videoStudy.data.model.Users">
+    <result column="id" javaType="integer" property="id"/>
+    <result property="username" javaType="string" column="username"/>
+    <result property="password" javaType="string" column="password"/>
+    <result property="name" javaType="string" column="name"/>
+    <result property="phone" javaType="string" column="phone"/>
+    <result property="identityNumber" javaType="string" column="identityNumber"/>
+    <result property="role" javaType="integer" column="role"/>
+    <result property="status" javaType="string" column="status"/>
+  </resultMap>
+    <insert id="insertUser" parameterType="com.videoStudy.data.model.Users">
+      INSERT INTO Users(username, password, name, phone, identityNumber)
+      VALUES(username,password, name,phone,identityNumber);
+    </insert>
+    <select id="selectById" resultMap="BaseResultMap">
+    SELECT * FROM Users WHERE id = #{id};
+  </select>
+  <select id="selectByUsername" resultMap="BaseResultMap">
+    SELECT * FROM Users WHERE username = #{username};
+  </select>
+</mapper>

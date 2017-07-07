@@ -13,4 +13,23 @@ public class IndexController {
         model.addAttribute("message", "this is test page");
         return "index";
     }
+
+    @RequestMapping(value = "/getToolBar", method = RequestMethod.GET)
+    public String getToolBar(){
+        return "tool/toolbar";
+    }
+
+    @RequestMapping(value = "/getLoginPage", method = RequestMethod.GET)
+    public String getLoginPage(){
+        return "tool/login";
+    }
+    @RequestMapping(value = "getFooter", method = RequestMethod.GET)
+    public String getFooter(){
+        return "tool/footer";
+    }
+
+    @RequestMapping(value = "getRegister", method = RequestMethod.GET)
+    public String getRegister(){
+        return "tool/register";
+    }
 }
