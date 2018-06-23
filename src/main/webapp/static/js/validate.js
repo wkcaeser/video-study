@@ -24,10 +24,10 @@ function checkValidateCode() {
         dataType:"json",
         contentType: "application/json",
         data:code,
+        async:false,
         success:function (data) {
             var status = data.status;
             $("#validateStatus").html(status);
-            console.log(status);
         },
         error:function (data) {
             console.log("error : " + data);

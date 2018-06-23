@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.videoStudy.data.dao.ClassPayMapper">
+    <insert id="insert" parameterType="com.videoStudy.data.model.ClassPay">
+        INSERT INTO ClassPay(number, classId, uid, time) VALUES (#{number},#{classId} ,#{uid}, #{time});
+    </insert>
+    <update id="updateStatusById">
+        UPDATE ClassPay SET status=#{status} WHERE id = #{id};
+    </update>
+    <select id="selectPage" resultType="com.videoStudy.data.model.PayDetail">
+        SELECT * FROM PayDetail ORDER BY id DESC LIMIT #{beginRow}, #{pageSize};
+    </select>
+    <select id="selectById" resultType="com.videoStudy.data.model.ClassPay">
+        SELECT * FROM ClassPay WHERE id = #{id};
+    </select>
+    <select id="selectUserOrder" resultType="com.videoStudy.data.model.PayDetail">
+        SELECT * FROM PayDetail WHERE uid = #{uid} ORDER BY time DESC;
+    </select>
+</mapper>

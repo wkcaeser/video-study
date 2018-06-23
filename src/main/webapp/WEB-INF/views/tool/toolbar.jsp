@@ -3,14 +3,14 @@
 <head>
     <title>toolbar</title>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap/css/bootstrap.min.css">
-    <script src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/jquery-1.8.0.min.js"></script>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/static/css/tool/toolbar.css">
 </head>
 <body>
 <div>
     <div class="toolbar">
         <div class="toolleft">
-            <p class="toolp">欢迎参加视频学习</p>
+            <p class="toolp">湖北省钟祥市食品安全知识网络学习平台</p>
         </div>
 
         <div>
@@ -19,9 +19,6 @@
                 <div class="toolregister"><p class="toolp">注册</p></div>
             </div>
 
-            <div style="display: none">
-                <p class="toolp">个人中心</p>
-            </div>
         </div>
     </div>
 

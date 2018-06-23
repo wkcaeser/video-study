@@ -70,7 +70,7 @@ $("#r_name").on("blur", checkName);
 
 function checkPhone() {
     if($("#r_phone").val() === ""){
-        $("#r_phoneStatus").html("姓名不能为空");
+        $("#r_phoneStatus").html("电话不能为空");
         return
     }else {
         $("#r_phoneStatus").html("");
@@ -81,7 +81,7 @@ $("#r_phone").on("blur", checkPhone);
 
 function checkIdentity() {
     if($("#r_identityNumber").val() === ""){
-        $("#r_identityStatus").html("姓名不能为空");
+        $("#r_identityStatus").html("身份证不能为空");
         return
     }else {
         $("#r_identityStatus").html("");
@@ -95,6 +95,7 @@ function register() {
     var name = $("#r_name");
     var phoneNumber = $("#r_phone");
     var identityNumber = $("#r_identityNumber");
+    var sex = $($('#r_sex').find('option:selected')[0]);
 
     if(username.val() === ""){
         $("#r_usernameStatus").html("用户名不能为空");
@@ -120,23 +121,28 @@ function register() {
         $("#r_identityStatus").html("身份证号不能为空");
         return;
     }
+
     var registerData = {
         'username':username.val(),
         'password':password.val(),
         'name':name.val(),
         'phone':phoneNumber.val(),
-        'identityNumber':identityNumber.val()
+        'sex':sex.val(),
+        'identityNumber':identityNumber.val(),
+        'company':$('#r_company').val()
     };
-
     $.ajax({
         type:'post',
         url:'/register',
-        data:JSON.stringify(registerData),
+        data:registerData,
         success:function (data) {
-            console.log(data);
+            if(data.status === "SUCCESS")
+                window.location.href = "/";
+            else
+                alert("注册失败！");
         },
         error:function () {
-            console.log("register");
+            console.log("register error");
         }
     });
 }

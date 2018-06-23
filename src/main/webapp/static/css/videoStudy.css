@@ -1,0 +1,14 @@
+body{font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
+.leftdiv{
+    float: left;
+    width: 45%;
+    height: 60%;
+}
+
+.rightdiv{
+    float: right;
+    width: 55%;
+    min-height: 90%;
+    background-color:#f5f5f5;
+}
+

@@ -9,16 +9,34 @@
     <result property="phone" javaType="string" column="phone"/>
     <result property="identityNumber" javaType="string" column="identityNumber"/>
     <result property="role" javaType="integer" column="role"/>
+    <result property="sex" javaType="string" column="sex"/>
     <result property="status" javaType="string" column="status"/>
+    <result property="company" javaType="string" column="company"/>
   </resultMap>
     <insert id="insertUser" parameterType="com.videoStudy.data.model.Users">
-      INSERT INTO Users(username, password, name, phone, identityNumber)
-      VALUES(username,password, name,phone,identityNumber);
+      INSERT INTO Users(username, password, name, phone, identityNumber, sex, company)
+      VALUES(#{username},#{password}, #{name}, #{phone},#{identityNumber}, #{sex}, #{company});
     </insert>
+  <update id="updateStatusById">
+    UPDATE Users SET role = #{role} WHERE id=#{id};
+  </update>
+  <update id="updatePasswordById">
+    UPDATE Users SET password = #{password} WHERE id = #{id};
+  </update>
+    <update id="updateStatusStrById">
+      UPDATE Users SET status = #{status} WHERE id= #{uid};
+    </update>
     <select id="selectById" resultMap="BaseResultMap">
     SELECT * FROM Users WHERE id = #{id};
   </select>
   <select id="selectByUsername" resultMap="BaseResultMap">
     SELECT * FROM Users WHERE username = #{username};
   </select>
+  <select id="selectAll" resultType="com.videoStudy.data.model.Users">
+    SELECT * FROM Users ORDER BY id DESC LIMIT #{beginRow}, #{pageSize};
+  </select>
+
+    <select id="selectStatusStrById" resultType="java.lang.String">
+      SELECT status FROM Users WHERE id = #{uid};
+    </select>
 </mapper>

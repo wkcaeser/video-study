@@ -1,7 +1,8 @@
+body{font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
 .toolfooter {
     width: 100%;
     height: 8%;
-    background-color: #222222;
+    background-color: steelblue;
     position: fixed;
     bottom: 0;
 }

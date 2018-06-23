@@ -1,14 +1,40 @@
 package com.videoStudy.data.model;
 
 public class Users {
-    private int id;
+    private Integer id;
     private String username;
     private String password;
     private String name;
     private String phone;
     private String identityNumber;
-    private int role;
+    private Integer role;
+    private String sex;
     private String status;
+    private String company;
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
     public int getId() {
         return id;
@@ -72,5 +98,19 @@ public class Users {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", identityNumber='" + identityNumber + '\'' +
+                ", role=" + role +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

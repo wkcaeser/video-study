@@ -11,7 +11,7 @@
             margin-top:10px;
         }
     </style>
-    <script src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/jquery-1.8.0.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -61,6 +61,19 @@
 
             <div class="row">
                 <div class="col-md-4">
+                    <label>请选择性别：</label>
+                </div>
+                <div class="col-md-8">
+                    <select name="sex" id="r_sex">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                    <label id="r_sexStatus" style="color: red"></label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
                     <label>请输入电话：</label>
                 </div>
                 <div class="col-md-8">
@@ -79,11 +92,20 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-4">
+                    <label>请输入所属单位：</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="r_company" name="company" placeholder="请输入所属单位" class="form-control" />
+                    <label id="r_companyStatus" style="color: red"></label>
+                </div>
+            </div>
 
             <div class="row">
                 <label id="r_registerFailMessage" style="color: red" style="color: red"></label>
             </div>
-            <button id="r_submit" class="btn btn-default" style="width:92%;height:60px;background-color:#383838;color:#fff;font-weight:bold;font-size:20px;">注册新用户</button>
+            <button id="r_submit" class="btn btn-default" style="width:92%;height:60px;background-color:steelblue;color:#fff;font-weight:bold;font-size:20px;">注册新用户</button>
         </div>
         <div class="col-md-3">
         </div>
